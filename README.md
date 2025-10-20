@@ -9,3 +9,4 @@ A Strava-ish app to track bicycle rides
 - Track hear rate and heart rate zones
 - Track goals
 - Track bikes and components
+

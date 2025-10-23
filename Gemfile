@@ -4,8 +4,14 @@ source "https://rubygems.org"
 gem "rails", "~> 8.1.0"
 # The modern asset pipeline for Rails [https://github.com/rails/propshaft]
 gem "propshaft"
-# Use sqlite3 as the database for Active Record
-gem "sqlite3", ">= 2.1"
+# Use PostgreSQL for production (Heroku), SQLite for development/test
+group :production do
+  gem "pg", "~> 1.5"
+end
+
+group :development, :test do
+  gem "sqlite3", ">= 2.1"
+end
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", ">= 5.0"
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
@@ -18,7 +24,13 @@ gem "stimulus-rails"
 gem "jbuilder"
 
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
-# gem "bcrypt", "~> 3.1.7"
+gem "bcrypt", "~> 3.1.7"
+
+# OAuth authentication
+gem "omniauth", "~> 2.1"
+gem "omniauth-google-oauth2", "~> 1.2"
+gem "omniauth-apple", "~> 1.3"
+gem "omniauth-rails_csrf_protection", "~> 1.0"
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[ windows jruby ]

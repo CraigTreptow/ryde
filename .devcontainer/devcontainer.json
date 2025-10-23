@@ -1,0 +1,36 @@
+{
+  "name": "Ryde Development",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "app",
+  "workspaceFolder": "/workspace",
+
+  "features": {
+    "ghcr.io/devcontainers/features/git:1": {},
+    "ghcr.io/devcontainers/features/github-cli:1": {}
+  },
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "rebornix.ruby",
+        "Shopify.ruby-lsp",
+        "bradlc.vscode-tailwindcss",
+        "esbenp.prettier-vscode"
+      ],
+      "settings": {
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "[ruby]": {
+          "editor.defaultFormatter": "Shopify.ruby-lsp",
+          "editor.formatOnSave": true
+        }
+      }
+    }
+  },
+
+  "forwardPorts": [3000, 5432],
+
+  "postCreateCommand": "bundle install && bin/rails db:prepare",
+
+  "remoteUser": "vscode"
+}

@@ -4,17 +4,13 @@ A Strava-ish app to track bicycle rides
 
 ## Features
 
-- OAuth authentication (Google, Apple) and traditional email/password
+- Email/password authentication
 - Auto-read from Wahoo devices
 - Map rides
 - Track best efforts
 - Track heart rate and heart rate zones
 - Track goals
 - Track bikes and components
-
-## Documentation
-
-- [Authentication](docs/AUTHENTICATION.md) - Comprehensive guide to the authentication system
 
 ## Getting Started
 
@@ -47,11 +43,28 @@ A Strava-ish app to track bicycle rides
    bin/rails server
    ```
 
-5. Open http://localhost:3000
+5. Open http://localhost:3000 and create an account
+
+### Authentication
+
+The app uses email/password authentication powered by Rails 8's built-in authentication system.
+
+**To get started:**
+1. Visit http://localhost:3000
+2. Click "Don't have an account? Sign up"
+3. Create your account with email and password
+4. You'll be automatically signed in
 
 #### Running Tests
 ```bash
+# Run all tests (excluding system tests)
 bin/rails test
+
+# Run system tests (requires Chrome)
+bin/rails test:system
+
+# Run all CI checks (security scans, linting, tests)
+bin/ci
 ```
 
 #### Database Management
@@ -65,33 +78,6 @@ bin/rails db:migrate
 # Rollback migration
 bin/rails db:rollback
 ```
-
-### OAuth Configuration
-
-To enable Google and Apple sign-in, configure OAuth credentials:
-
-```bash
-# Edit encrypted credentials
-bin/rails credentials:edit
-```
-
-Add your OAuth credentials:
-```yaml
-google:
-  client_id: YOUR_GOOGLE_CLIENT_ID
-  client_secret: YOUR_GOOGLE_CLIENT_SECRET
-
-apple:
-  client_id: YOUR_APPLE_CLIENT_ID
-  team_id: YOUR_APPLE_TEAM_ID
-  key_id: YOUR_APPLE_KEY_ID
-  private_key: |
-    -----BEGIN PRIVATE KEY-----
-    YOUR_APPLE_PRIVATE_KEY
-    -----END PRIVATE KEY-----
-```
-
-For detailed OAuth setup instructions, see [Authentication Documentation](docs/AUTHENTICATION.md).
 
 ## Frontend & Styling
 

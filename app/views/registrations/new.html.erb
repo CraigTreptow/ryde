@@ -1,0 +1,54 @@
+<div class="container">
+  <div class="row justify-content-center py-5">
+    <div class="col-md-6 text-center">
+      <%= image_tag "logo.svg", alt: "Ryde", class: "mb-4", style: "max-width: 300px;" %>
+    </div>
+  </div>
+
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <%= tag.div(flash[:alert], class: "alert alert-danger") if flash[:alert] %>
+      <%= tag.div(flash[:notice], class: "alert alert-success") if flash[:notice] %>
+
+      <div class="card p-4">
+        <h2 class="text-center mb-4">Create Account</h2>
+
+        <%= form_with model: @user, url: registration_path, class: "needs-validation" do |form| %>
+          <% if @user.errors.any? %>
+            <div class="alert alert-danger">
+              <h6>Please fix the following errors:</h6>
+              <ul class="mb-0">
+                <% @user.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+
+          <div class="mb-3">
+            <%= form.label :email_address, class: "form-label" %>
+            <%= form.email_field :email_address, required: true, autofocus: true, autocomplete: "username", placeholder: "Enter your email address", class: "form-control" %>
+          </div>
+
+          <div class="mb-3">
+            <%= form.label :password, class: "form-label" %>
+            <%= form.password_field :password, required: true, autocomplete: "new-password", placeholder: "Enter your password", maxlength: 72, class: "form-control" %>
+          </div>
+
+          <div class="mb-3">
+            <%= form.label :password_confirmation, "Confirm Password", class: "form-label" %>
+            <%= form.password_field :password_confirmation, required: true, autocomplete: "new-password", placeholder: "Confirm your password", maxlength: 72, class: "form-control" %>
+          </div>
+
+          <div class="d-grid">
+            <%= form.submit "Create Account", class: "btn btn-primary" %>
+          </div>
+        <% end %>
+
+        <div class="text-center mt-3">
+          <%= link_to "Already have an account? Sign in", new_session_path %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

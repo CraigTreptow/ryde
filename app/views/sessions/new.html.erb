@@ -11,16 +11,7 @@
       <%= tag.div(flash[:notice], class: "alert alert-success") if flash[:notice] %>
 
       <div class="card p-4">
-        <h2 class="text-center mb-4">Sign in with OAuth</h2>
-
-        <div class="d-grid gap-2 mb-3">
-          <%= button_to "Sign in with Google", "/auth/google_oauth2", method: :post, data: { turbo: false }, class: "btn btn-outline-light" %>
-          <%= button_to "Sign in with Apple", "/auth/apple", method: :post, data: { turbo: false }, class: "btn btn-outline-light" %>
-        </div>
-
-        <hr class="my-4">
-
-        <h2 class="text-center mb-4">Or sign in with email</h2>
+        <h2 class="text-center mb-4">Sign In</h2>
 
         <%= form_with url: session_path, class: "needs-validation" do |form| %>
           <div class="mb-3">
@@ -36,6 +27,10 @@
 
         <div class="text-center mt-3">
           <%= link_to "Forgot password?", new_password_path %>
+        </div>
+
+        <div class="text-center mt-2">
+          <%= link_to "Don't have an account? Sign up", new_registration_path %>
         </div>
       </div>
     </div>

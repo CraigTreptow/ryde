@@ -4,17 +4,13 @@ A Strava-ish app to track bicycle rides
 
 ## Features
 
-- OAuth authentication (Google, Apple) and traditional email/password
+- Email/password authentication
 - Auto-read from Wahoo devices
 - Map rides
 - Track best efforts
 - Track heart rate and heart rate zones
 - Track goals
 - Track bikes and components
-
-## Documentation
-
-- [Authentication](docs/AUTHENTICATION.md) - Comprehensive guide to the authentication system
 
 ## Getting Started
 
@@ -65,33 +61,6 @@ bin/rails db:migrate
 # Rollback migration
 bin/rails db:rollback
 ```
-
-### OAuth Configuration
-
-To enable Google and Apple sign-in, configure OAuth credentials:
-
-```bash
-# Edit encrypted credentials
-bin/rails credentials:edit
-```
-
-Add your OAuth credentials:
-```yaml
-google:
-  client_id: YOUR_GOOGLE_CLIENT_ID
-  client_secret: YOUR_GOOGLE_CLIENT_SECRET
-
-apple:
-  client_id: YOUR_APPLE_CLIENT_ID
-  team_id: YOUR_APPLE_TEAM_ID
-  key_id: YOUR_APPLE_KEY_ID
-  private_key: |
-    -----BEGIN PRIVATE KEY-----
-    YOUR_APPLE_PRIVATE_KEY
-    -----END PRIVATE KEY-----
-```
-
-For detailed OAuth setup instructions, see [Authentication Documentation](docs/AUTHENTICATION.md).
 
 ## Frontend & Styling
 

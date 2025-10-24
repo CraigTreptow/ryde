@@ -1,19 +1,16 @@
 require "application_system_test_case"
 
 class LoginTest < ApplicationSystemTestCase
-  test "visiting the login page shows all authentication options" do
+  test "visiting the login page shows authentication options" do
     visit new_session_path
 
-    assert_selector "h2", text: "Sign in with OAuth"
-    assert_button "Sign in with Google"
-    assert_button "Sign in with Apple"
-
-    assert_selector "h2", text: "Or sign in with email"
+    assert_selector "h2", text: "Sign In"
     assert_field "email_address"
     assert_field "password"
     assert_button "Sign in"
 
     assert_link "Forgot password?"
+    assert_link "Don't have an account? Sign up"
   end
 
   test "signing in with valid email and password" do
@@ -25,10 +22,9 @@ class LoginTest < ApplicationSystemTestCase
     fill_in "password", with: "password"
     click_button "Sign in"
 
-    # Successfully redirected to root path
-    # (Note: root_path is currently the login page, which will change
-    # when a dashboard/home page is added)
+    # Successfully redirected to home page
     assert_current_path root_path
+    assert_selector "h1", text: "Welcome to Ryde!"
   end
 
   test "signing in with invalid credentials shows error" do
@@ -41,19 +37,27 @@ class LoginTest < ApplicationSystemTestCase
     assert_current_path new_session_path
   end
 
-  test "OAuth buttons are present and clickable" do
+  test "registration link navigates to sign up page" do
     visit new_session_path
 
-    # Test Google button exists
-    google_button = find_button("Sign in with Google")
-    assert google_button.present?
+    click_link "Don't have an account? Sign up"
 
-    # Test Apple button exists
-    apple_button = find_button("Sign in with Apple")
-    assert apple_button.present?
+    assert_current_path new_registration_path
+    assert_selector "h2", text: "Create Account"
+  end
 
-    # Note: We can't fully test OAuth flow without real credentials
-    # but we can verify the buttons render and are accessible
+  test "creating a new account and signing in" do
+    visit new_registration_path
+
+    fill_in "Email address", with: "newuser@example.com"
+    fill_in "Password", with: "securepassword123"
+    fill_in "Confirm Password", with: "securepassword123"
+    click_button "Create Account"
+
+    # Successfully signed in and redirected to home page
+    assert_current_path root_path
+    assert_selector "h1", text: "Welcome to Ryde!"
+    assert_text "newuser@example.com"
   end
 
   private

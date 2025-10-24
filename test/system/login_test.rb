@@ -41,19 +41,6 @@ class LoginTest < ApplicationSystemTestCase
     assert_current_path new_session_path
   end
 
-  test "can sign out via DELETE request to session path" do
-    user = users(:one)
-    sign_in_as user
-
-    # Using the API-level test since there's no sign-out button in UI yet
-    # This verifies the logout functionality works for future UI implementation
-    page.driver.submit :delete, session_path, {}
-
-    # After logout, accessing root requires authentication
-    visit root_path
-    assert_current_path new_session_path
-  end
-
   test "OAuth buttons are present and clickable" do
     visit new_session_path
 

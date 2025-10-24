@@ -1,6 +1,6 @@
 # Database configuration
-# Uses PostgreSQL when DATABASE_URL is set (devcontainer, Heroku)
-# Falls back to SQLite for local development without Docker
+# Uses PostgreSQL when DATABASE_URL is set (production/Heroku)
+# Falls back to SQLite for local development
 
 default: &default
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>

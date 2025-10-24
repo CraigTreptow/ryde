@@ -43,11 +43,28 @@ A Strava-ish app to track bicycle rides
    bin/rails server
    ```
 
-5. Open http://localhost:3000
+5. Open http://localhost:3000 and create an account
+
+### Authentication
+
+The app uses email/password authentication powered by Rails 8's built-in authentication system.
+
+**To get started:**
+1. Visit http://localhost:3000
+2. Click "Don't have an account? Sign up"
+3. Create your account with email and password
+4. You'll be automatically signed in
 
 #### Running Tests
 ```bash
+# Run all tests (excluding system tests)
 bin/rails test
+
+# Run system tests (requires Chrome)
+bin/rails test:system
+
+# Run all CI checks (security scans, linting, tests)
+bin/ci
 ```
 
 #### Database Management

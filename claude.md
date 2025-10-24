@@ -159,7 +159,7 @@ Write comprehensive tests for all functionality:
 ## Pull Request Checklist
 
 Before creating a PR, ensure:
-- [ ] All tests pass (`rails test`)
+- [ ] All CI checks pass (`bin/ci`)
 - [ ] Code follows Sandi Metz' rules
 - [ ] Code follows clean code principles
 - [ ] Rails conventions are followed

@@ -17,9 +17,21 @@ RUN curl -fsSL https://deb.nodesource.com/setup_lts.x | bash - \
 # Set working directory
 WORKDIR /workspace
 
+# Create vscode user if it doesn't exist
+RUN useradd -m -s /bin/bash vscode 2>/dev/null || true
+
+# Fix RVM permissions for vscode user
+RUN if [ -d /usr/local/rvm ]; then \
+        chgrp -R vscode /usr/local/rvm && \
+        chmod -R g+w /usr/local/rvm; \
+    fi
+
 # Install bundler
 RUN gem install bundler
 
-# Create vscode user
-RUN useradd -m -s /bin/bash vscode || true
+# Switch to vscode user
 USER vscode
+
+# Configure bundler to install gems to user directory
+RUN bundle config set --global path '/home/vscode/.bundle' && \
+    bundle config set --global bin '/home/vscode/.bundle/bin'

@@ -30,6 +30,16 @@
 
   "forwardPorts": [3000, 5432],
 
+  "portsAttributes": {
+    "3000": {
+      "label": "Rails Server",
+      "onAutoForward": "ignore"
+    },
+    "5432": {
+      "label": "PostgreSQL"
+    }
+  },
+
   "postCreateCommand": "bundle install && bin/rails db:prepare",
 
   "remoteUser": "vscode"

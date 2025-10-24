@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="80" viewBox="0 0 360 80" aria-label="Ryde logo">
+  <!-- Icon: minimal circle wheel -->
+  <circle cx="40" cy="40" r="30" fill="none" stroke="#66ff99" stroke-width="4"/>
+
+  <!-- "ryde" wordmark in monospace -->
+  <text x="90" y="54"
+        font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, 'Roboto Mono', monospace"
+        font-size="48"
+        font-weight="600"
+        fill="#66ff99"
+        letter-spacing="-1">
+    ryde
+  </text>
+</svg>

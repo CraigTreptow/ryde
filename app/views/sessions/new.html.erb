@@ -1,19 +1,43 @@
-<%= tag.div(flash[:alert], style: "color:red") if flash[:alert] %>
-<%= tag.div(flash[:notice], style: "color:green") if flash[:notice] %>
+<div class="container">
+  <div class="row justify-content-center py-5">
+    <div class="col-md-6 text-center">
+      <%= image_tag "logo.svg", alt: "Ryde", class: "mb-4", style: "max-width: 300px;" %>
+    </div>
+  </div>
 
-<h2>Sign in with OAuth</h2>
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <%= tag.div(flash[:alert], class: "alert alert-danger") if flash[:alert] %>
+      <%= tag.div(flash[:notice], class: "alert alert-success") if flash[:notice] %>
 
-<%= button_to "Sign in with Google", "/auth/google_oauth2", method: :post, data: { turbo: false } %>
-<%= button_to "Sign in with Apple", "/auth/apple", method: :post, data: { turbo: false } %>
+      <div class="card p-4">
+        <h2 class="text-center mb-4">Sign in with OAuth</h2>
 
-<br>
-<h2>Or sign in with email</h2>
+        <div class="d-grid gap-2 mb-3">
+          <%= button_to "Sign in with Google", "/auth/google_oauth2", method: :post, data: { turbo: false }, class: "btn btn-outline-light" %>
+          <%= button_to "Sign in with Apple", "/auth/apple", method: :post, data: { turbo: false }, class: "btn btn-outline-light" %>
+        </div>
 
-<%= form_with url: session_path do |form| %>
-  <%= form.email_field :email_address, required: true, autofocus: true, autocomplete: "username", placeholder: "Enter your email address", value: params[:email_address] %><br>
-  <%= form.password_field :password, required: true, autocomplete: "current-password", placeholder: "Enter your password", maxlength: 72 %><br>
-  <%= form.submit "Sign in" %>
-<% end %>
-<br>
+        <hr class="my-4">
 
-<%= link_to "Forgot password?", new_password_path %>
+        <h2 class="text-center mb-4">Or sign in with email</h2>
+
+        <%= form_with url: session_path, class: "needs-validation" do |form| %>
+          <div class="mb-3">
+            <%= form.email_field :email_address, required: true, autofocus: true, autocomplete: "username", placeholder: "Enter your email address", value: params[:email_address], class: "form-control" %>
+          </div>
+          <div class="mb-3">
+            <%= form.password_field :password, required: true, autocomplete: "current-password", placeholder: "Enter your password", maxlength: 72, class: "form-control" %>
+          </div>
+          <div class="d-grid">
+            <%= form.submit "Sign in", class: "btn btn-primary" %>
+          </div>
+        <% end %>
+
+        <div class="text-center mt-3">
+          <%= link_to "Forgot password?", new_password_path %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

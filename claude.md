@@ -87,6 +87,38 @@ Follow these rules strictly (break only with good reason and documentation):
    - Add indexes for foreign keys and frequently queried columns
    - Use database constraints where appropriate
 
+### Frontend Development
+
+1. **Bootstrap 5 Usage**
+   - Use Bootstrap utility classes for layout and spacing
+   - Leverage Bootstrap components (cards, buttons, forms, alerts, etc.)
+   - Avoid inline styles - use Bootstrap classes or custom CSS
+   - Reference: [Bootstrap 5 Documentation](https://getbootstrap.com/docs/5.3/)
+
+2. **Custom Styling**
+   - All custom styles go in `app/assets/stylesheets/`
+   - Use CSS variables for theme colors (see `:root` in `ryde-theme.css`)
+   - Follow the existing naming pattern: `--ryde-*` for custom variables
+   - Override Bootstrap defaults using CSS variables when possible
+
+3. **CSS Organization**
+   - Files load alphabetically via Propshaft
+   - Keep `ryde-theme.css` for theme-wide overrides only
+   - Create component-specific CSS files if needed
+   - Avoid `!important` unless absolutely necessary
+
+4. **Responsive Design**
+   - Mobile-first approach
+   - Use Bootstrap's responsive grid system
+   - Test on mobile, tablet, and desktop viewports
+   - Use Bootstrap responsive utility classes (`d-none`, `d-md-block`, etc.)
+
+5. **Asset Pipeline**
+   - Images go in `app/assets/images/`
+   - Use `image_tag` helper in views
+   - SVG preferred for icons and logos
+   - Optimize images before committing
+
 ## Testing Requirements
 
 ### Test Coverage

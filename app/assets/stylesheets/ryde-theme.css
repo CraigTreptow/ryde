@@ -1,0 +1,85 @@
+/* ryde-theme.css */
+/* Inspired by craigtreptow.com with a clean, modern cycling twist */
+
+/* 1️⃣ Base variables overriding Bootstrap */
+:root {
+  /* Background / surface */
+  --ryde-bg-start: #003300;
+  --ryde-bg-end: #001a00;
+  --bs-body-bg: var(--ryde-bg-start);
+  --bs-body-color: #ffffff;
+
+  /* Primary neon accent (like your site highlights) */
+  --ryde-accent: #66ff99;
+  --bs-primary: var(--ryde-accent);
+
+  /* Secondary neutral */
+  --bs-secondary: #6c757d;
+
+  /* Card surface */
+  --ryde-card-bg: rgba(255, 255, 255, 0.05);
+  --ryde-border: rgba(255, 255, 255, 0.12);
+
+  /* Font choices */
+  --ryde-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", monospace;
+  --ryde-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* 2️⃣ Global body styling */
+body {
+  background: linear-gradient(135deg, var(--ryde-bg-start), var(--ryde-bg-end));
+  font-family: var(--ryde-sans);
+  color: var(--bs-body-color);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 3️⃣ Branding / headings use monospace */
+h1, h2, h3, h4, h5, h6, .navbar-brand, .brand {
+  font-family: var(--ryde-mono);
+  letter-spacing: -0.5px;
+}
+
+/* 4️⃣ Navbar styling */
+.navbar {
+  background-color: rgba(0, 0, 0, 0.25) !important;
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid var(--ryde-border);
+}
+
+.navbar-brand {
+  color: var(--ryde-accent) !important;
+  font-weight: 600;
+}
+
+/* 5️⃣ Buttons */
+.btn-primary {
+  background-color: var(--ryde-accent);
+  border: none;
+  color: #000;
+  font-weight: 600;
+  border-radius: 10px;
+}
+.btn-primary:hover {
+  opacity: 0.9;
+}
+
+/* 6️⃣ Card style */
+.card {
+  background-color: var(--ryde-card-bg);
+  border: 1px solid var(--ryde-border);
+  border-radius: 12px;
+  backdrop-filter: blur(4px);
+}
+
+/* 7️⃣ Links */
+a {
+  color: var(--ryde-accent);
+}
+a:hover {
+  opacity: 0.85;
+}
+
+/* 8️⃣ Optional glow effect like your homepage */
+.ryde-glow {
+  text-shadow: 0 0 6px var(--ryde-accent);
+}

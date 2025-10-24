@@ -5,14 +5,14 @@ class OauthAuthenticatorTest < ActiveSupport::TestCase
     @auth_hash = {
       "provider" => "google_oauth2",
       "uid" => "new_oauth_123456",
-      "info" => { "email" => "newuser@example.com" }
+      "info" => {"email" => "newuser@example.com"}
     }
   end
 
   test "creates new user and service for new OAuth user" do
     authenticator = OauthAuthenticator.new(@auth_hash)
 
-    assert_difference [ "User.count", "ConnectedService.count" ], 1 do
+    assert_difference ["User.count", "ConnectedService.count"], 1 do
       result = authenticator.authenticate
       assert result.success?
       assert_equal "newuser@example.com", result.user.email_address
@@ -29,12 +29,12 @@ class OauthAuthenticatorTest < ActiveSupport::TestCase
     auth_hash = {
       "provider" => "google_oauth2",
       "uid" => "existing_123",
-      "info" => { "email" => "existing@example.com" }
+      "info" => {"email" => "existing@example.com"}
     }
 
     authenticator = OauthAuthenticator.new(auth_hash)
 
-    assert_no_difference [ "User.count", "ConnectedService.count" ] do
+    assert_no_difference ["User.count", "ConnectedService.count"] do
       result = authenticator.authenticate
       assert result.success?
       assert_equal user.id, result.user.id
@@ -47,7 +47,7 @@ class OauthAuthenticatorTest < ActiveSupport::TestCase
     auth_hash = {
       "provider" => "google_oauth2",
       "uid" => "adding_123",
-      "info" => { "email" => "adding@example.com" }
+      "info" => {"email" => "adding@example.com"}
     }
 
     authenticator = OauthAuthenticator.new(auth_hash)
@@ -70,12 +70,12 @@ class OauthAuthenticatorTest < ActiveSupport::TestCase
     different_auth = {
       "provider" => "apple",
       "uid" => "different_999",
-      "info" => { "email" => "password_user@example.com" }
+      "info" => {"email" => "password_user@example.com"}
     }
 
     authenticator = OauthAuthenticator.new(different_auth)
 
-    assert_no_difference [ "User.count", "ConnectedService.count" ] do
+    assert_no_difference ["User.count", "ConnectedService.count"] do
       result = authenticator.authenticate
       assert_not result.success?
       assert_not_nil result.error_message

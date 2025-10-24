@@ -13,7 +13,7 @@ class OauthCallbacksControllerTest < ActionDispatch::IntegrationTest
     OmniAuth.config.mock_auth[:google_oauth2] = {
       "provider" => "google_oauth2",
       "uid" => "new_google_user_999",
-      "info" => { "email" => "oauth_test@example.com" }
+      "info" => {"email" => "oauth_test@example.com"}
     }
 
     assert_difference "User.count", 1 do
@@ -31,7 +31,7 @@ class OauthCallbacksControllerTest < ActionDispatch::IntegrationTest
     OmniAuth.config.mock_auth[:apple] = {
       "provider" => "apple",
       "uid" => "apple_123456",
-      "info" => { "email" => "apple_test@example.com" }
+      "info" => {"email" => "apple_test@example.com"}
     }
 
     assert_difference "User.count", 1 do
@@ -55,10 +55,10 @@ class OauthCallbacksControllerTest < ActionDispatch::IntegrationTest
     OmniAuth.config.mock_auth[:google_oauth2] = {
       "provider" => "google_oauth2",
       "uid" => "existing_123",
-      "info" => { "email" => "existing_oauth@example.com" }
+      "info" => {"email" => "existing_oauth@example.com"}
     }
 
-    assert_no_difference [ "User.count", "ConnectedService.count" ] do
+    assert_no_difference ["User.count", "ConnectedService.count"] do
       post "/auth/google_oauth2/callback"
     end
 
@@ -75,10 +75,10 @@ class OauthCallbacksControllerTest < ActionDispatch::IntegrationTest
     OmniAuth.config.mock_auth[:google_oauth2] = {
       "provider" => "google_oauth2",
       "uid" => "new_123",
-      "info" => { "email" => "password_user@example.com" }
+      "info" => {"email" => "password_user@example.com"}
     }
 
-    assert_no_difference [ "User.count", "ConnectedService.count" ] do
+    assert_no_difference ["User.count", "ConnectedService.count"] do
       post "/auth/google_oauth2/callback"
     end
 

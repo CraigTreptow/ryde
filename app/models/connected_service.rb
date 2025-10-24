@@ -3,5 +3,5 @@ class ConnectedService < ApplicationRecord
 
   validates :provider, presence: true
   validates :uid, presence: true
-  validates :uid, uniqueness: { scope: :provider }
+  validates :uid, uniqueness: {scope: :provider}
 end

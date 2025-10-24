@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+set -e
+
+echo "===================================="
+echo "Running CI checks locally..."
+echo "===================================="
+echo ""
+
+echo "→ Scanning for Rails security vulnerabilities..."
+bin/brakeman --no-pager
+echo "✓ Brakeman passed"
+echo ""
+
+echo "→ Scanning for JavaScript security vulnerabilities..."
+bin/importmap audit
+echo "✓ Importmap audit passed"
+echo ""
+
+echo "→ Linting code for consistent style..."
+bundle exec standardrb
+echo "✓ Standardrb passed"
+echo ""
+
+echo "→ Preparing test database..."
+bin/rails db:test:prepare RAILS_ENV=test
+echo ""
+
+echo "→ Running tests (skipping system tests - requires Chrome)..."
+bin/rails test
+echo "✓ Tests passed"
+echo ""
+
+echo "===================================="
+echo "All CI checks passed! ✓"
+echo "===================================="
+echo ""
+echo "Note: System tests were skipped. To run them:"
+echo "  bin/rails test:system"
